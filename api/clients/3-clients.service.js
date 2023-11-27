@@ -10,11 +10,6 @@ async function filter(query) {
   return clients;
 }
 
-async function getById(id) {
-  const client = await repository.getById(id);
-  return client;
-}
-
 async function create(body) {
   const newClient = await repository.create(body);
   return newClient;
@@ -25,8 +20,13 @@ async function deleteClient(body) {
   return deletedClient;
 }
 
-async function editClient(body) {
-  const editedClient = await repository.editClient(body);
+async function replace(body) {
+  const replacedClient = await repository.replace(body);
+  return replacedClient;
+}
+
+async function edit(id, body) {
+  const editedClient = await repository.edit(id, body);
   return editedClient;
 }
 
@@ -39,9 +39,9 @@ async function getByDocument(number) {
 export {
   all,
   filter,
-  getById,
   create,
   deleteClient,
-  editClient,
+  replace,
+  edit,
   getByDocument,
 };

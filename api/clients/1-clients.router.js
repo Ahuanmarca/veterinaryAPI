@@ -5,10 +5,10 @@ const router = Router();
 
 router.get("/", controller.all);
 router.get("/filter", controller.filter);
-router.get("/:id", controller.getById);
 router.post("/", controller.create);
 router.delete("/", controller.deleteClient);
-router.patch("/", controller.editClient); // just "edit"
+router.put("/:id", controller.replace);
+router.patch("/:id", controller.edit);
 
 router.get("/document/:number", controller.getByDocument);
 

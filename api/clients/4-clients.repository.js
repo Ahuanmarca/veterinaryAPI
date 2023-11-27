@@ -10,11 +10,6 @@ async function filter(query) {
   return clients;
 }
 
-async function getById(id) {
-  const client = await clientModel.findById(id);
-  return client;
-}
-
 async function create(body) {
   const newClient = await clientModel.create(body);
   return newClient;
@@ -25,13 +20,24 @@ async function deleteClient(body) {
   return deletedClient;
 }
 
-async function editClient(body) {
-  const filter = { _id: body.id };
+async function replace(body) {
+  const _id = body.id;
   delete body.id;
-  const editedClient = await clientModel.findOneAndUpdate(filter, body, {
+  const replacedClient = await clientModel.findOneAndReplace({ _id }, body, {
     new: true,
   });
-  return editedClient;
+  return replacedClient;
+}
+
+async function edit(_id, body) {
+  console.log(_id, body);
+  // const updatedClient = await clientModel.findOneAndUpdate({ _id }, body, {
+  //   new: true
+  // });
+  const updatedClient = await clientModel.findByIdAndUpdate({ _id }, body, {
+    new: true,
+  })
+  return updatedClient;
 }
 
 async function getByDocument(number) {
@@ -43,10 +49,10 @@ async function getByDocument(number) {
 export {
   all,
   filter,
-  getById,
   create,
   deleteClient,
-  editClient,
+  replace,
+  edit,
   getByDocument,
 };
 

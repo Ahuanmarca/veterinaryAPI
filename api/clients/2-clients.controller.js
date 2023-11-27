@@ -11,12 +11,6 @@ async function filter(req, res) {
   res.json(clients);
 }
 
-async function getById(req, res) {
-  const { id } = req.params;
-  const client = await service.getById(id);
-  res.json(client);
-}
-
 async function create(req, res) {
   const { body } = req;
   if (!Object.keys(body).length) {
@@ -39,9 +33,23 @@ async function deleteClient(req, res) {
   res.json(deletedClient);
 }
 
-async function editClient(req, res) {
+async function replace(req, res) {
   const { body } = req;
-  const editedClient = await service.editClient(body);
+  const replacedClient = await service.replace(body);
+  res.json(replacedClient);
+}
+
+async function edit(req, res) {
+  const { id } = req.params;
+  const { body } = req;
+
+  const mongoDBIdRegex = /^[0-9a-fA-F]{24}$/;
+  if (!mongoDBIdRegex.test(id)) {
+    res.json({ error: "Invalid MongoDB ID" });
+    return;
+  }
+
+  const editedClient = await service.edit(id, body);
   res.json(editedClient);
 }
 
@@ -62,9 +70,9 @@ async function getByDocument(req, res) {
 export {
   all,
   filter,
-  getById,
   create,
   deleteClient,
-  editClient,
+  replace,
+  edit,
   getByDocument,
 };
