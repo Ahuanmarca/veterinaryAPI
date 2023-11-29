@@ -18,7 +18,7 @@ const clientsSchema = new Schema({
       type: String,
       required: true,
       default: 'dni',
-      enums: ['dni', 'nie', 'passport'],
+      enum: ['dni', 'nie', 'passport'],
     },
     number: {
       type: String,
