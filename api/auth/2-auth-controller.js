@@ -17,7 +17,9 @@ async function login(req, res) {
     res.json("Username and password are required");
     return;
   }
+  // console.log({ userName, password });
   const token = await service.login(userName, password);
+  console.log({ token });
   res.json({ token });
 }
 

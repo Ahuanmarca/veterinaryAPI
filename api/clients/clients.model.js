@@ -38,7 +38,7 @@ const clientsSchema = new Schema({
   mail: {
     type: String,
     required: false,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
+    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
   },
   address: {
     type: { type: String, required: true, enum: ['street', 'avenue', 'road'] },
