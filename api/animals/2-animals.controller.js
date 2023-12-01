@@ -7,7 +7,6 @@ async function getAll(req, res) {
 }
 
 async function byClientDocument(req, res) {
-  console.log(req);
   const clientDocumentNumber = req.params.number;
   const animals = await service.byClientDocument(clientDocumentNumber);
   res.json(animals);

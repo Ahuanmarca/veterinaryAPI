@@ -1,6 +1,11 @@
 import * as service from "./3-clients.service.js";
 
 async function all(req, res) {
+  if(req.headers.authorization !== "patata") {
+    res.status(401);
+    res.json({ msg: "Unauthorized" });
+    return;
+  }
   const clients = await service.all();
   res.json(clients);
 }

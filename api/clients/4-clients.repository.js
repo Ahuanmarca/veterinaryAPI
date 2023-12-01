@@ -30,10 +30,6 @@ async function replace(body) {
 }
 
 async function edit(_id, body) {
-  console.log(_id, body);
-  // const updatedClient = await clientModel.findOneAndUpdate({ _id }, body, {
-  //   new: true
-  // });
   const updatedClient = await clientModel.findByIdAndUpdate({ _id }, body, {
     new: true,
   })

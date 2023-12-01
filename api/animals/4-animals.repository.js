@@ -22,9 +22,8 @@ async function updateByClient(clientId, newProps) {
     { new: true }
   );
   console.log(updateInfo);
-  const newClientId = newProps.clientId;
   const updatedAnimals = await animalModel.find({
-    clientId: newClientId ? newClientId : clientId,
+    clientId: newProps.clientId || clientId,
   });
   return updatedAnimals;
 }
