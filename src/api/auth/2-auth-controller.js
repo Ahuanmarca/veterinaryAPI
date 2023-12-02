@@ -19,7 +19,7 @@ async function login(req, res) {
   }
   // console.log({ userName, password });
   const token = await service.login(userName, password);
-  console.log({ token });
+  // console.log({ token });
   res.json({ token });
 }
 

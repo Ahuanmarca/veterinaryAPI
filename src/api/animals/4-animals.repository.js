@@ -16,12 +16,13 @@ async function byClientDocument(clientId) {
 }
 
 async function updateByClient(clientId, newProps) {
-  const updateInfo = await animalModel.updateMany(
+  // const updateInfo = 
+  await animalModel.updateMany(
     { clientId: clientId },
     { $set: newProps },
     { new: true }
   );
-  console.log(updateInfo);
+  // console.log(updateInfo);
   const updatedAnimals = await animalModel.find({
     clientId: newProps.clientId || clientId,
   });

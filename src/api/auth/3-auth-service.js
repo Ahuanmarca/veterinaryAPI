@@ -25,7 +25,7 @@ async function register(userName, password) {
 async function login(userName, password) {
   const user = await usersRepository.getByUsername(userName);
   let token;
-  console.log(user.password, compareSync(password, user.password));
+  // console.log(user.password, compareSync(password, user.password));
   if (user && compareSync(password, user.password)) {
     token = getToken(user._id);
   }
