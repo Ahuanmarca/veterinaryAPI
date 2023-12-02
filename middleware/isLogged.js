@@ -13,8 +13,6 @@ export default function (req, res, next) {
 
   const isPublicRoute = publicRoutes.some((publicRoute) => {
     const requestedURL = req.url;
-    // console.log({ requestedURL, publicRoute });
-    // return requestedURL.includes(publicRoute);
     return requestedURL.startsWith(publicRoute);
   });
 
@@ -30,7 +28,6 @@ export default function (req, res, next) {
     return;
   }
 
-  // ! OJO, HE DEJADO ESTE CÓDIGO A MEDIAS
   const secretWord = "youwillneverguess";
   jwt.verify(token, secretWord, async (error, payload) => {
     if (error) {
@@ -38,11 +35,9 @@ export default function (req, res, next) {
       unauthorized(res);
       return;
     }
-    // console.log(payload);
-    // MADRE MIA!!
     const user = await userService.getById(payload.userId);
     req.user = user;
+    next();
   });
 
-  next();
 }
