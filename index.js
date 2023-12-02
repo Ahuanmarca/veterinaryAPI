@@ -1,7 +1,7 @@
 import express from 'express';
 import './database.js';
-import apiRouter from './api/router.js';
-import isLogged from "./middleware/isLogged.js";
+import apiRouter from './src/api/router.js';
+import isLogged from "./src/middleware/isLogged.js";
 
 const app = express();
 const port = 3000;
