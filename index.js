@@ -1,20 +1,18 @@
-import express from 'express';
-import './database.js';
+import express from "express";
+import "./environment.js";
+import "./database.js";
 import cors from "cors";
-import apiRouter from './src/api/router.js';
+import apiRouter from "./src/api/router.js";
 import isLogged from "./src/middleware/isLogged.js";
 
 const app = express();
-const port = 3000;
+const { PORT } = process.env;
 
 app.use(express.json());
 app.use(cors({ origin: true }));
-
-// Middleware
 app.use(isLogged);
-
 app.use(apiRouter);
 
-app.listen(port, () => {
-  console.log('serving on port', port);
+app.listen(PORT, () => {
+  console.log("serving on PORT", PORT);
 });

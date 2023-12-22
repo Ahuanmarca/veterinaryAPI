@@ -22,4 +22,10 @@ async function updateByClient(req, res) {
   res.json(updatedAnimals);
 }
 
-export { getAll, byClientDocument, updateByClient };
+async function getPaginated(req, res) {
+  const { page, itemsPerPage } = req.params;
+  const animals = await service.getPaginated( page, itemsPerPage );
+  res.json(animals);
+}
+
+export { getAll, byClientDocument, updateByClient, getPaginated };

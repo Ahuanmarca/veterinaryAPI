@@ -29,4 +29,13 @@ async function updateByClient(clientId, newProps) {
   return updatedAnimals;
 }
 
-export { getAll, byClientDocument, updateByClient };
+async function getPaginated(skip, limit) {
+  const animals = await animalModel
+    .find({})
+    .skip(skip)
+    .limit(limit)
+    .lean();
+  return animals;
+}
+
+export { getAll, byClientDocument, updateByClient, getPaginated };

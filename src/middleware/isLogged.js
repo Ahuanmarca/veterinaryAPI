@@ -28,8 +28,9 @@ export default function (req, res, next) {
     return;
   }
 
-  const secretWord = "youwillneverguess";
-  jwt.verify(token, secretWord, async (error, payload) => {
+  // const TOKEN_SECRET_WORD = "youWillNeverGuess";
+  const { TOKEN_SECRET_WORD } = process.env;
+  jwt.verify(token, TOKEN_SECRET_WORD, async (error, payload) => {
     if (error) {
       console.error("jwt ERROR !! 👹");
       unauthorized(res);
@@ -39,5 +40,4 @@ export default function (req, res, next) {
     req.user = user;
     next();
   });
-
 }

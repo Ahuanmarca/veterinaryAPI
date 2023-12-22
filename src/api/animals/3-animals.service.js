@@ -18,4 +18,11 @@ async function updateByClient(clientDocumentNumber, newProps) {
   return updatedAnimals;
 }
 
-export { getAll, byClientDocument, updateByClient };
+async function getPaginated(page, itemsPerPage) {
+  const skip = (page - 1) * itemsPerPage;
+  const limit = itemsPerPage;
+  const animals = await repository.getPaginated(skip, limit);
+  return animals;
+}
+
+export { getAll, byClientDocument, updateByClient, getPaginated };

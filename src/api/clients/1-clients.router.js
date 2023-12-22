@@ -1,9 +1,10 @@
 import Router from "express";
 import * as controller from "./2-clients.controller.js";
+import isAdmin from "../../middleware/isAdmin.js";
 
 const router = Router();
 
-router.get("/", controller.all);
+router.get("/", isAdmin, controller.all);
 router.get("/filter", controller.filter);
 router.post("/", controller.create);
 router.delete("/", controller.deleteClient);
