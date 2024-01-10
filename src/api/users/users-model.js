@@ -5,7 +5,7 @@ const usersSchema = new Schema({
     type: String,
     required: false,
   },
-  surname: {
+  surName: { // TODO: FIX THIS SHIT!
     type: String,
     required: false,
   },
@@ -22,7 +22,7 @@ const usersSchema = new Schema({
     default: "staff",
     required: true,
   },
-  userName: {
+  username: {
     type: String,
     required: true,
   },

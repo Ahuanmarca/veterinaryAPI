@@ -17,19 +17,18 @@ function getToken(userId) {
   return token;
 }
 
-async function register(userName, password) {
-  const { SALT_OR_ROUNDS_HASH } = process.env;
+async function register(username, password) {
+  const { SALT_OR_ROUNDS_HASH } = Number(process.env);
   const hashedPassword = hashSync(password, SALT_OR_ROUNDS_HASH);
-  const user = await usersRepository.create(userName, hashedPassword);
-  // const token = `${user.userName}Patata`;
+  const user = await usersRepository.create(username, hashedPassword);
+  // const token = `${user.username}Patata`;
   const token = getToken(user._id);
   return token;
 }
 
-async function login(userName, password) {
-  const user = await usersRepository.getByUsername(userName);
+async function login(username, password) {
+  const user = await usersRepository.getByusername(username);
   let token;
-  // console.log(user.password, compareSync(password, user.password));
   if (user && compareSync(password, user.password)) {
     token = getToken(user._id);
   }

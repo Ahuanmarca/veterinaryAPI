@@ -5,18 +5,15 @@ async function getById(id) {
   return user;
 }
 
-async function create(userName, password) {
-  const user = await userModel.create({ userName, password });
+async function create(username, password) {
+  const user = await userModel.create({ username, password });
   return user;
 }
 
-async function getByUsername(username) {
+async function getByusername(username) {
+  // TODO FIX THIS SHIT !!! - change userName for username on the db
   const user = await userModel.findOne({ userName: username }).lean();
   return user;
 }
 
-export {
-  getById,
-  create,
-  getByUsername,
-};
+export { getById, create, getByusername };

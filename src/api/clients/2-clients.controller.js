@@ -1,7 +1,6 @@
 import * as service from "./3-clients.service.js";
 
 async function all(req, res) {
-  // console.log({ user: req.user });
   const clients = await service.all();
   res.json(clients);
 }
